@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Internal AI Engineering Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e7eb;
+        }
+        .accent-color { color: #ff8e25; }
+        .bg-accent-color { background-color: #ff8e25; }
+        .border-accent-color { border-color: #ff8e25; }
+        .gradient-text {
+            background: linear-gradient(90deg, #ff8e25, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .section-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Background Animation -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+        <div class="absolute w-96 h-96 bg-accent-color rounded-full -top-40 -left-40 opacity-20 blur-3xl animate-pulse"></div>
+        <div class="absolute w-96 h-96 bg-blue-500 rounded-full -bottom-40 -right-40 opacity-10 blur-3xl animate-pulse delay-1000"></div>
+    </div>
+
+    <!-- Header/Hero Section -->
+    <header class="h-screen flex flex-col items-center justify-center text-center p-4">
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-wider">
+            Internal AI <span class="gradient-text">Engineering Assistant</span>
+        </h1>
+        <p class="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl">
+            A strategic investment to accelerate innovation, guarantee quality, and secure our intellectual property.
+        </p>
+        <a href="#ask" class="mt-12 px-8 py-4 bg-accent-color text-black font-bold rounded-lg text-lg hover:scale-105 transform transition-transform duration-300">
+            View The Proposal
+        </a>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- The Problem Section -->
+        <section id="problem" class="section-hidden my-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">The <span class="accent-color">Innovation Bottleneck</span></h2>
+            <p class="text-center text-gray-400 max-w-2xl mx-auto mb-16">Our engineers are brilliant, but their time is consumed by manual, repetitive tasks that slow down our progress.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="glass-card p-8 rounded-xl">
+                    <div class="text-6xl accent-color font-black" data-target="40">0</div>
+                    <h3 class="text-xl font-bold mt-4">40% Time Lost</h3>
+                    <p class="text-gray-400 mt-2">On routine tasks like code structuring, documentation, and data lookups.</p>
+                </div>
+                <div class="glass-card p-8 rounded-xl">
+                    <div class="text-6xl accent-color font-black" data-target="25">0</div>
+                    <h3 class="text-xl font-bold mt-4">25% Rework Rate</h3>
+                    <p class="text-gray-400 mt-2">Due to manual errors, leading to higher costs and delays (Non-FTR).</p>
+                </div>
+                <div class="glass-card p-8 rounded-xl">
+                    <div class="text-6xl accent-color font-black" data-target="100">0</div>
+                    <h3 class="text-xl font-bold mt-4">100% Preventable</h3>
+                    <p class="text-gray-400 mt-2">These inefficiencies can be solved with the right intelligent tools.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Solution Section -->
+        <section id="solution" class="section-hidden my-32">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">The Solution: A <span class="accent-color">Secure Co-Pilot</span></h2>
+                    <p class="text-gray-400 mb-8 text-lg">An AI assistant hosted on our own servers, giving us a powerful advantage without compromising our most valuable asset: our data.</p>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <svg class="w-8 h-8 text-accent-color mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                            <div>
+                                <h3 class="text-xl font-bold">Completely Air-Gapped</h3>
+                                <p class="text-gray-400">Operates with zero connection to the internet. Our intellectual property never leaves our network.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                           <svg class="w-8 h-8 text-accent-color mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2 1M4 7l2-1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg>
+                            <div>
+                                <h3 class="text-xl font-bold">Proven Open-Source Foundation</h3>
+                                <p class="text-gray-400">Built on robust, industry-vetted technology (Ollama & Open-WebUI) for maximum performance and features.</p>
+                            </div>
+                        </li>
+                         <li class="flex items-start">
+                            <svg class="w-8 h-8 text-accent-color mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            <div>
+                                <h3 class="text-xl font-bold">Scalable & Multi-User</h3>
+                                <p class="text-gray-400">Designed from the ground up to support multiple engineers across all departments simultaneously.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex items-center justify-center p-8">
+                    <div class="relative w-64 h-64">
+                         <div class="absolute inset-0 bg-accent-color rounded-full blur-2xl opacity-40"></div>
+                         <svg class="relative w-full h-full" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#ff8e25" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10.44 15.52L12 14.53L13.56 15.52V13.38L15.35 12.22L13.56 11.06V8.92L12 9.91L10.44 8.92V11.06L8.65 12.22L10.44 13.38V15.52Z" stroke="#ff8e25" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M15.35 12.22H18.5" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M5.5 12.22H8.65" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 5.5V8.92" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 15.52V18.5" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact Section -->
+        <section id="impact" class="section-hidden my-32">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Projected Impact: <span class="accent-color">Metrics That Matter</span></h2>
+            <p class="text-center text-gray-400 max-w-2xl mx-auto mb-16">This isn't just about convenience. It's about a measurable return on investment across time, quality, and cost.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold text-center mb-4">Productivity Boost (Time Saved)</h3>
+                    <canvas id="timeChart"></canvas>
+                </div>
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold text-center mb-4">Quality Improvement (First Time Right)</h3>
+                    <canvas id="qualityChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <!-- The Race to Adapt Section -->
+        <section id="race-to-adapt" class="section-hidden my-32">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">The Race to Adapt: <span class="accent-color">Why We Must Act Now</span></h2>
+            <p class="text-center text-gray-400 max-w-3xl mx-auto mb-16">The world is not waiting. Companies that integrate AI are creating an insurmountable lead. We learned to type instead of hand-writing letters to save time; this is the next evolution. We must adapt our skills or risk becoming obsolete.</p>
+            <div class="glass-card p-6 rounded-xl">
+                <h3 class="text-xl font-bold text-center mb-4">The AI Adoption Curve (2020-2035)</h3>
+                <canvas id="raceChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Addressing Concerns Section -->
+        <section id="concerns" class="section-hidden my-32">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">AI: <span class="accent-color">Augment, Not Replace</span></h2>
+            <p class="text-center text-gray-400 max-w-3xl mx-auto mb-16">This tool is designed to empower our engineers, not replace them. It addresses the most common concerns head-on.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="glass-card p-8 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-4">Myth: AI will replace our coders.</h3>
+                    <p class="text-gray-300"><strong class="accent-color">Fact:</strong> AI will be their most powerful tool. It automates the tedious, repetitive work—boilerplate code, formatting, initial drafts—freeing our best minds to focus on complex architecture, innovation, and problem-solving, where their experience is invaluable.</p>
+                </div>
+                <div class="glass-card p-8 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-4">Myth: Our data will be at risk.</h3>
+                    <p class="text-gray-300"><strong class="accent-color">Fact:</strong> Our data will be more secure than ever. The system is <strong class="text-white underline">100% air-gapped</strong>. No prompts, no code, and no proprietary information ever leave our internal network. We get all the benefits of AI with none of the security risks.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Demo Section -->
+        <section id="video-demo" class="section-hidden my-32">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">See It In Action: <span class="accent-color">Core Capability Demo</span></h2>
+            <p class="text-center text-gray-400 max-w-3xl mx-auto mb-16">This video demonstrates the core capabilities of the proposed system, showing how it can accelerate development workflows in real-time.</p>
+            
+            <div class="max-w-4xl mx-auto aspect-w-16 aspect-h-9 glass-card rounded-xl overflow-hidden">
+                 <!-- 
+                    INSTRUCTIONS: 
+                    1. Go to your video in Google Drive.
+                    2. Right-click -> Share -> Share. Set "General access" to "Anyone with the link".
+                    3. Open the video, click the 3 dots (top-right) -> "Embed item...".
+                    4. Copy the URL from the `src="..."` attribute.
+                    5. Paste that URL below, replacing "YOUR_GOOGLE_DRIVE_EMBED_LINK_HERE".
+                 -->
+                <iframe 
+                    class="w-full h-full" 
+                    src="YOUR_GOOGLE_DRIVE_EMBED_LINK_HERE" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+
+        <!-- The Ask Section -->
+        <section id="ask" class="section-hidden my-32">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">The Investment: <span class="accent-color">Powering Our Future</span></h2>
+            <p class="text-center text-gray-400 max-w-2xl mx-auto mb-16">A one-time hardware investment is required to build this strategic asset and unlock its potential for all engineering teams.</p>
+            <div class="max-w-3xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg">
+                    <div class="glass-card p-6 rounded-lg flex justify-between items-center">
+                        <span class="font-bold">CPU</span>
+                        <span class="accent-color font-mono">16-32 Cores</span>
+                    </div>
+                    <div class="glass-card p-6 rounded-lg flex justify-between items-center">
+                        <span class="font-bold">RAM</span>
+                        <span class="accent-color font-mono">128 GB ECC</span>
+                    </div>
+                    <div class="glass-card p-6 rounded-lg flex justify-between items-center">
+                        <span class="font-bold">GPU</span>
+                        <span class="accent-color font-mono">48 GB GDDR6</span>
+                    </div>
+                    <div class="glass-card p-6 rounded-lg flex justify-between items-center">
+                        <span class="font-bold">STORAGE</span>
+                        <span class="accent-color font-mono">1-2 TB NVMe</span>
+                    </div>
+                </div>
+                 <p class="text-center text-gray-500 mt-8 text-sm">IT support and consultation will be essential for making the final procurement decisions.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-8 border-t border-gray-800">
+        <p class="text-gray-500">Presented by Kunal Kanojiya</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Intersection Observer for animations ---
+            const sections = document.querySelectorAll('.section-hidden');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('section-visible');
+                        
+                        if(entry.target.id === 'problem') startCounters(entry.target);
+                        if(entry.target.id === 'impact') renderImpactCharts();
+                        if(entry.target.id === 'race-to-adapt') renderRaceChart();
+                        
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => observer.observe(section));
+
+            // --- Animated Counters ---
+            let countersStarted = false;
+            function startCounters(section) {
+                if (countersStarted) return;
+                const counters = section.querySelectorAll('[data-target]');
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    let current = 0;
+                    const increment = target / 100;
+                    const updateCounter = () => {
+                        if (current < target) {
+                            current += increment;
+                            counter.innerText = Math.ceil(current);
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCounter();
+                });
+                countersStarted = true;
+            }
+
+            // --- Chart.js Rendering ---
+            let impactChartsRendered = false;
+            function renderImpactCharts() {
+                if (impactChartsRendered) return;
+                const timeCtx = document.getElementById('timeChart').getContext('2d');
+                new Chart(timeCtx, {
+                    type: 'bar', data: { labels: ['Code Structuring', 'Documentation', 'Manual Lookups'], datasets: [{ label: 'Before AI (Hours/Week)', data: [8, 6, 5], backgroundColor: 'rgba(255, 255, 255, 0.2)', borderColor: 'rgba(255, 255, 255, 0.4)', borderWidth: 1 }, { label: 'With AI (Hours/Week)', data: [2, 2, 1], backgroundColor: '#ff8e25', borderColor: '#ff8e25', borderWidth: 1 }] },
+                    options: { responsive: true, scales: { y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.1)' } }, x: { grid: { color: 'rgba(255,255,255,0.1)' } } }, plugins: { legend: { labels: { color: '#e5e7eb' } } } }
+                });
+                const qualityCtx = document.getElementById('qualityChart').getContext('2d');
+                new Chart(qualityCtx, {
+                    type: 'doughnut', data: { labels: ['First Time Right', 'Rework / Errors'], datasets: [{ data: [85, 15], backgroundColor: ['#ff8e25', 'rgba(255, 255, 255, 0.2)'], borderColor: '#0a0a0a', borderWidth: 4 }] },
+                    options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { color: '#e5e7eb' } }, tooltip: { callbacks: { label: (context) => `${context.label}: ${context.raw}%` } } }, animation: { animateRotate: true, animateScale: true } }
+                });
+                impactChartsRendered = true;
+            }
+            
+            let raceChartRendered = false;
+            function renderRaceChart() {
+                if (raceChartRendered) return;
+                const raceCtx = document.getElementById('raceChart').getContext('2d');
+                new Chart(raceCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['2020', '2022', '2024', '2026', '2028', '2030', '2032', '2035'],
+                        datasets: [{
+                            label: 'Early Adopters (Global Tech)',
+                            data: [5, 15, 40, 70, 85, 95, 98, 100],
+                            borderColor: '#ff8e25',
+                            backgroundColor: 'rgba(255, 142, 37, 0.2)',
+                            fill: true,
+                            tension: 0.4
+                        }, {
+                            label: 'Our Opportunity',
+                            data: [2, 5, 10, null, null, null, null, null],
+                            borderColor: 'rgba(255, 255, 255, 0.8)',
+                             borderDash: [5, 5],
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: { y: { beginAtZero: true, max: 100, grid: { color: 'rgba(255,255,255,0.1)' }, ticks: { callback: (value) => value + '%' } }, x: { grid: { color: 'rgba(255,255,255,0.1)' } } },
+                        plugins: { title: { display: true, text: 'AI Capability & Adoption', color: '#e5e7eb' }, legend: { labels: { color: '#e5e7eb' } } }
+                    }
+                });
+                raceChartRendered = true;
+            }
+        });
+    </script>
+</body>
+</html>
