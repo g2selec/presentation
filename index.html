@@ -38,6 +38,59 @@
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        /* --- Scrolling Gallery Styles --- */
+        .scroller {
+            max-width: 1200px;
+            overflow: hidden;
+            -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+            mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+            scroll-behavior: smooth; /* For manual navigation */
+        }
+        .scroller-inner {
+            display: flex;
+            gap: 1rem;
+            width: max-content;
+        }
+        .scroller-img {
+            height: 250px;
+            width: auto;
+            max-width: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .scroller-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- Lightbox Modal Styles --- */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            line-height: 1;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -108,7 +161,7 @@
                             </div>
                         </li>
                          <li class="flex items-start">
-                            <svg class="w-8 h-8 text-accent-color mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            <svg class="w-8 h-8 text-accent-color mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                             <div>
                                 <h3 class="text-xl font-bold">Scalable & Multi-User</h3>
                                 <p class="text-gray-400">Designed from the ground up to support multiple engineers across all departments simultaneously.</p>
@@ -197,32 +250,28 @@
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Proof of Concept <span class="accent-color">Gallery</span></h2>
             <p class="text-center text-gray-400 max-w-3xl mx-auto mb-16">Screenshots from our successful desktop trials, validating the platform's core functionalities.</p>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Gallery Image 1 -->
-                <div class="glass-card rounded-lg overflow-hidden p-2">
-                    <!-- 
-                        INSTRUCTIONS FOR GOOGLE DRIVE IMAGES:
-                        1. In Google Drive, right-click your image -> Share -> Share.
-                        2. Change "General access" from "Restricted" to "Anyone with the link".
-                        3. Copy the share link. It will look like: 
-                           https://drive.google.com/file/d/FILE_ID/view?usp=sharing
-                        4. Take the FILE_ID from that link.
-                        5. Create your image URL in this format: 
-                           https://drive.google.com/uc?export=view&id=YOUR_FILE_ID
-                        6. Paste the new URL into the src="" below.
-                    -->
-                    <img src="https://drive.google.com/uc?export=view&id=1-QKqzlE-FzyyeEhtYEA6kmse1I14Qt9X" alt="Proof of Concept Screenshot 1" class="rounded-md w-full h-full object-cover" referrerpolicy="no-referrer">
+            <div id="scroller-container" class="relative max-w-6xl mx-auto">
+                <div id="scroller" class="scroller">
+                    <div class="scroller-inner">
+                        <img src="https://lh3.googleusercontent.com/d/1-QKqzlE-FzyyeEhtYEA6kmse1I14Qt9X" alt="Proof of Concept Screenshot 1" class="scroller-img" referrerpolicy="no-referrer">
+                        <img src="https://lh3.googleusercontent.com/d/1SqpccODhY55ocDXe41NC1FSMxSV4_Xhb" alt="Proof of Concept Screenshot 2" class="scroller-img" referrerpolicy="no-referrer">
+                        <img src="https://lh3.googleusercontent.com/d/1_zdBMlO6raOYxucE8qaP4cVoMWZsynOr" alt="Proof of Concept Screenshot 3" class="scroller-img" referrerpolicy="no-referrer">
+                        <img src="https://lh3.googleusercontent.com/d/1Qb3xdzF9yIX3RqEiqfFTcsCBAPTiSkmV" alt="Proof of Concept Screenshot 4" class="scroller-img" referrerpolicy="no-referrer">
+                        <img src="https://lh3.googleusercontent.com/d/1RYIBwKjhsYPewJ9JRPKweJJsgGuWbaMe" alt="Proof of Concept Screenshot 5" class="scroller-img" referrerpolicy="no-referrer">
+                        <img src="https://lh3.googleusercontent.com/d/1ufxdBI-b8B-k5aRNE1FTfo94vZWvsj8E" alt="Proof of Concept Screenshot 6" class="scroller-img" referrerpolicy="no-referrer">
+                        <img src="https://lh3.googleusercontent.com/d/1JwlmnKc5zFlAYHQuCxCIDZXB5vZil5Mi" alt="Proof of Concept Screenshot 7" class="scroller-img" referrerpolicy="no-referrer">
+                        <img src="https://lh3.googleusercontent.com/d/1mCDcA1dLPpL6kDniCoY6iJE-3Nd8lAP0" alt="Proof of Concept Screenshot 8" class="scroller-img" referrerpolicy="no-referrer">
+                        <img src="https://lh3.googleusercontent.com/d/1j1pKw3aGJHuUm3pmyOviPujrIVG8s5VC" alt="Proof of Concept Screenshot 9" class="scroller-img" referrerpolicy="no-referrer">
+                        <img src="https://lh3.googleusercontent.com/d/1hpxoV7o4nxPjXpX4X_SkRbaTI8hg3E4f" alt="Proof of Concept Screenshot 10" class="scroller-img" referrerpolicy="no-referrer">
+                    </div>
                 </div>
-                
-                <!-- Gallery Image 2 -->
-                <div class="glass-card rounded-lg overflow-hidden p-2">
-                    <img src="https://drive.google.com/uc?export=view&id=1-QKqzlE-FzyyeEhtYEA6kmse1I14Qt9X" alt="Proof of Concept Screenshot 2" class="rounded-md w-full h-full object-cover" referrerpolicy="no-referrer">
-                </div>
-
-                <!-- Gallery Image 3 -->
-                <div class="glass-card rounded-lg overflow-hidden p-2">
-                    <img src="https://drive.google.com/uc?export=view&id=1-QKqzlE-FzyyeEhtYEA6kmse1I14Qt9X" alt="Proof of Concept Screenshot 3" class="rounded-md w-full h-full object-cover" referrerpolicy="no-referrer">
-                </div>
+                <!-- Navigation Buttons -->
+                <button id="prev-btn" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-sm p-2 rounded-full text-white hover:bg-white/20 transition-colors z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                </button>
+                <button id="next-btn" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 bg-white/10 backdrop-blur-sm p-2 rounded-full text-white hover:bg-white/20 transition-colors z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                </button>
             </div>
         </section>
 
@@ -260,6 +309,12 @@
         <p class="text-gray-500">Presented by Kunal Kanojiya</p>
     </footer>
 
+    <!-- Lightbox Modal HTML -->
+    <div id="lightbox" class="lightbox">
+        <span id="lightbox-close" class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Full screen POC image">
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Intersection Observer for animations ---
@@ -272,6 +327,7 @@
                         if(entry.target.id === 'problem') startCounters(entry.target);
                         if(entry.target.id === 'impact') renderImpactCharts();
                         if(entry.target.id === 'race-to-adapt') renderRaceChart();
+                        if(entry.target.id === 'poc-gallery') initScroller();
                         
                         observer.unobserve(entry.target);
                     }
@@ -350,6 +406,82 @@
                     }
                 });
                 raceChartRendered = true;
+            }
+
+            // --- Scroller and Lightbox Logic ---
+            function initScroller() {
+                const scrollerContainer = document.getElementById('scroller-container');
+                const scroller = document.getElementById('scroller');
+                const scrollerInner = scroller.querySelector('.scroller-inner');
+                const prevBtn = document.getElementById('prev-btn');
+                const nextBtn = document.getElementById('next-btn');
+                
+                if (!scroller) return; // Exit if scroller not found
+
+                // Duplicate images for seamless loop
+                const scrollerContent = Array.from(scrollerInner.children);
+                scrollerContent.forEach(item => {
+                    const duplicatedItem = item.cloneNode(true);
+                    duplicatedItem.setAttribute('aria-hidden', true);
+                    scrollerInner.appendChild(duplicatedItem);
+                });
+
+                let autoScrollInterval;
+
+                function startAutoScroll() {
+                    stopAutoScroll(); // Prevent multiple intervals
+                    autoScrollInterval = setInterval(() => {
+                        scroller.scrollLeft += 1;
+                        // Reset scroll position for infinite loop
+                        if (scroller.scrollLeft >= scrollerInner.scrollWidth / 2) {
+                            scroller.scrollLeft = 0;
+                        }
+                    }, 25);
+                }
+
+                function stopAutoScroll() {
+                    clearInterval(autoScrollInterval);
+                }
+
+                prevBtn.addEventListener('click', () => {
+                    const scrollAmount = scroller.querySelector('.scroller-img').clientWidth + 16; // 16px for the gap
+                    scroller.scrollLeft -= scrollAmount;
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    const scrollAmount = scroller.querySelector('.scroller-img').clientWidth + 16; // 16px for the gap
+                    scroller.scrollLeft += scrollAmount;
+                });
+                
+                // **FIX:** The hover events are now on the container that holds the scroller AND the buttons.
+                scrollerContainer.addEventListener('mouseenter', stopAutoScroll);
+                scrollerContainer.addEventListener('mouseleave', startAutoScroll);
+
+                // Lightbox
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = document.getElementById('lightbox-img');
+                const lightboxClose = document.getElementById('lightbox-close');
+                const allImages = scrollerInner.querySelectorAll('.scroller-img');
+
+                allImages.forEach(image => {
+                    image.addEventListener('click', () => {
+                        lightbox.style.display = 'flex';
+                        lightboxImg.src = image.src;
+                        stopAutoScroll(); // Pause scroll when lightbox is open
+                    });
+                });
+
+                const closeLightbox = () => {
+                    lightbox.style.display = 'none';
+                    // Do not automatically restart scroll on close, let the mouseleave event handle it.
+                };
+
+                lightboxClose.addEventListener('click', closeLightbox);
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) closeLightbox();
+                });
+
+                startAutoScroll();
             }
         });
     </script>
