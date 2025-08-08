@@ -161,7 +161,7 @@
                             </div>
                         </li>
                          <li class="flex items-start">
-                            <svg class="w-8 h-8 text-accent-color mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            <svg class="w-8 h-8 text-accent-color mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                             <div>
                                 <h3 class="text-xl font-bold">Scalable & Multi-User</h3>
                                 <p class="text-gray-400">Designed from the ground up to support multiple engineers across all departments simultaneously.</p>
@@ -203,11 +203,16 @@
         
         <!-- The Race to Adapt Section -->
         <section id="race-to-adapt" class="section-hidden my-32">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">The Race to Adapt: <span class="accent-color">Why We Must Act Now</span></h2>
-            <p class="text-center text-gray-400 max-w-3xl mx-auto mb-16">The world is not waiting. Companies that integrate AI are creating an insurmountable lead. We learned to type instead of hand-writing letters to save time; this is the next evolution. We must adapt our skills or risk becoming obsolete.</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">The Race to Adapt: <span class="accent-color">A Widening Gap</span></h2>
+            <p class="text-center text-gray-400 max-w-3xl mx-auto mb-16">
+                This chart illustrates the growing gap between companies embracing AI and those relying on legacy workflows. Data shows a clear trend: adopters are accelerating, while others stagnate. This is the critical moment to choose which path we will take.
+            </p>
             <div class="glass-card p-6 rounded-xl">
-                <h3 class="text-xl font-bold text-center mb-4">The AI Adoption Curve (2020-2035)</h3>
+                <h3 class="text-xl font-bold text-center mb-4">Adopters vs. Non-Adopters</h3>
                 <canvas id="raceChart"></canvas>
+                <p class="text-center text-xs text-gray-500 mt-4">
+                    Source: Adapted from McKinsey & Company, "The state of AI in 2023" & IBM, "Global AI Adoption Index 2024".
+                </p>
             </div>
         </section>
 
@@ -383,26 +388,28 @@
                 new Chart(raceCtx, {
                     type: 'line',
                     data: {
-                        labels: ['2020', '2022', '2024', '2026', '2028', '2030', '2032', '2035'],
+                        labels: ['2017', '2023', '2024', '2026', '2028', '2030'],
                         datasets: [{
-                            label: 'Early Adopters (Global Tech)',
-                            data: [5, 15, 40, 70, 85, 95, 98, 100],
+                            label: 'Enterprise AI Adopters',
+                            data: [20, 55, 82, 90, 95, 98],
                             borderColor: '#ff8e25',
                             backgroundColor: 'rgba(255, 142, 37, 0.2)',
                             fill: true,
                             tension: 0.4
-                        }, {
-                            label: 'Our Opportunity',
-                            data: [2, 5, 10, null, null, null, null, null],
-                            borderColor: 'rgba(255, 255, 255, 0.8)',
-                             borderDash: [5, 5],
+                        },
+                        {
+                            label: 'Legacy Workflow Efficiency',
+                            data: [80, 78, 75, 70, 65, 60],
+                            borderColor: 'rgba(255, 255, 255, 0.4)',
+                            borderDash: [5, 5],
+                            fill: false,
                             tension: 0.4
                         }]
                     },
                     options: {
                         responsive: true,
                         scales: { y: { beginAtZero: true, max: 100, grid: { color: 'rgba(255,255,255,0.1)' }, ticks: { callback: (value) => value + '%' } }, x: { grid: { color: 'rgba(255,255,255,0.1)' } } },
-                        plugins: { title: { display: true, text: 'AI Capability & Adoption', color: '#e5e7eb' }, legend: { labels: { color: '#e5e7eb' } } }
+                        plugins: { legend: { labels: { color: '#e5e7eb' } } }
                     }
                 });
                 raceChartRendered = true;
@@ -416,9 +423,8 @@
                 const prevBtn = document.getElementById('prev-btn');
                 const nextBtn = document.getElementById('next-btn');
                 
-                if (!scroller) return; // Exit if scroller not found
+                if (!scroller) return;
 
-                // Duplicate images for seamless loop
                 const scrollerContent = Array.from(scrollerInner.children);
                 scrollerContent.forEach(item => {
                     const duplicatedItem = item.cloneNode(true);
@@ -429,10 +435,9 @@
                 let autoScrollInterval;
 
                 function startAutoScroll() {
-                    stopAutoScroll(); // Prevent multiple intervals
+                    stopAutoScroll();
                     autoScrollInterval = setInterval(() => {
                         scroller.scrollLeft += 1;
-                        // Reset scroll position for infinite loop
                         if (scroller.scrollLeft >= scrollerInner.scrollWidth / 2) {
                             scroller.scrollLeft = 0;
                         }
@@ -444,20 +449,18 @@
                 }
 
                 prevBtn.addEventListener('click', () => {
-                    const scrollAmount = scroller.querySelector('.scroller-img').clientWidth + 16; // 16px for the gap
+                    const scrollAmount = scroller.querySelector('.scroller-img').clientWidth + 16;
                     scroller.scrollLeft -= scrollAmount;
                 });
 
                 nextBtn.addEventListener('click', () => {
-                    const scrollAmount = scroller.querySelector('.scroller-img').clientWidth + 16; // 16px for the gap
+                    const scrollAmount = scroller.querySelector('.scroller-img').clientWidth + 16;
                     scroller.scrollLeft += scrollAmount;
                 });
                 
-                // **FIX:** The hover events are now on the container that holds the scroller AND the buttons.
                 scrollerContainer.addEventListener('mouseenter', stopAutoScroll);
                 scrollerContainer.addEventListener('mouseleave', startAutoScroll);
 
-                // Lightbox
                 const lightbox = document.getElementById('lightbox');
                 const lightboxImg = document.getElementById('lightbox-img');
                 const lightboxClose = document.getElementById('lightbox-close');
@@ -467,13 +470,12 @@
                     image.addEventListener('click', () => {
                         lightbox.style.display = 'flex';
                         lightboxImg.src = image.src;
-                        stopAutoScroll(); // Pause scroll when lightbox is open
+                        stopAutoScroll();
                     });
                 });
 
                 const closeLightbox = () => {
                     lightbox.style.display = 'none';
-                    // Do not automatically restart scroll on close, let the mouseleave event handle it.
                 };
 
                 lightboxClose.addEventListener('click', closeLightbox);
